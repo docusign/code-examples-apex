@@ -4,6 +4,8 @@
 
 This GitHub repo includes code examples for DocuSign's Apex Toolkit. The Apex Toolkit is a set of predefined Apex methods, classes, and utilities that encapsulate a set of the DocuSign eSignature API functionality similar to an SDK, enabling you to integrate DocuSign and Salesforce functionality into your Apex code.
 
+## Installation
+
 ### Prerequisites
 
 1. A free [DocuSign developer account](https://go.docusign.com/o/sandbox/); create one if you don't already have one.
