@@ -2,6 +2,7 @@ public class SendEnvelope {
 
     public static void sendEnvelopeMethod(){
         Id mySourceId; // The ID of the initiating Salesforce object
+        String templateId; // The ID of the DocuSign template
 
         // Create an empty envelope
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
@@ -24,7 +25,7 @@ public class SendEnvelope {
         myEnvelope = myEnvelope.withRecipients(new List<dfsle.Recipient> { myRecipient });
 
         // myTemplateId contains the DocuSign Id of the DocuSign Template
-        dfsle.UUID myTemplateId = dfsle.UUID.parse('01234567-xxxx-xxxx-xxxx-456789abcdef');
+        dfsle.UUID myTemplateId = dfsle.UUID.parse(templateId);
 
         // create a new document for the Envelope
         dfsle.Document myDocument = dfsle.Document.fromTemplate(
