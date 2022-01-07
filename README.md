@@ -11,7 +11,7 @@ This GitHub repo includes code examples for DocuSign's Apex Toolkit. The Apex To
 1. A free [DocuSign developer account](https://go.docusign.com/o/sandbox/); create one if you don't already have one.
 1. A Salesforce Developer Edition (account).
 1. [Install the Apex Toolkit](https://developers.docusign.com/docs/salesforce/how-to/apex-toolkit-install/). 
-1. Visual Studio Code. Your Visual Studio Code should be set up with the necessary [Salesforce development tools](https://trailhead.salesforce.com/content/learn/projects/set-up-your-lightning-web-components-developer-tools/install-development-tools) including the Salesforce CLI. 
+1. Visual Studio Code. Your Visual Studio Code should be set up with the necessary [Salesforce development tools](https://trailhead.salesforce.com/content/learn/projects/set-up-your-lightning-web-components-developer-tools/install-development-tools) including the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli). 
 1. The [Salesforce Extension Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
 
 ### Installation steps
