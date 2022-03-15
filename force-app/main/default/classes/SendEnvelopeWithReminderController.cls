@@ -10,7 +10,7 @@ public class SendEnvelopeWithReminderController {
             true, // Whether or not the envelope expires and is voided
             90, // How many days before the envelope expires
             10, // Number of days before expiration to remind the recipient
-            false // Deprecated field needed here
+            false // Placeholder for deprecated field
         );
         
 		// Create an empty envelope.
