@@ -19,7 +19,8 @@ public class SendEnvelopeWithReminderController {
  		// The initiating Salesforce entity.
 		
         // We will use a Salesforce contact record as a Recipient here
-		Contact myContact = [SELECT Id, Name, Email FROM Contact LIMIT 1];
+		// We will use a Salesforce contact record as a Recipient here
+		Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = '00xxxxxxxxxxxxxxAR'];
 
 		// Use the Recipient.fromSource method to create the Recipient
 		dfsle.Recipient myRecipient = dfsle.Recipient.fromSource(
