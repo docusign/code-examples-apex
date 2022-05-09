@@ -24,7 +24,7 @@ public class InPersonSigningController {
             null, //note
             null, //EmailSettings
             'Host Name', //host name This is the name of the host for InPerson
-            'paige.rossi@docusign.com', //host email email of host
+            'host@example.com', //host email email of host
             true, //sign now
             null, //source
             false, //read only
