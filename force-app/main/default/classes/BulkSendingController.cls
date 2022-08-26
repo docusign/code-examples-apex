@@ -10,7 +10,7 @@ public with sharing class BulkSendUpdate{
     @AuraEnabled
     public static Id buildList(){
 
-        Id myGroupId = '0F94W000000O4f2SAC'; // A Chatter group ID
+        Id myGroupId = '0FXXXXXXXXXXXXXXAC'; // A Chatter group ID
         // Build a list membership from a Chatter group
         // Recipient authentication, email settings, or private notes may be overridden using the Recipient.with* methods
         // Envelope email settings and notifications may also be overridden per copy using the Envelope.with* methods
@@ -56,7 +56,7 @@ public with sharing class BulkSendUpdate{
     */
     public static void bulkSendEnvelopes(Id myListId){
     
-	    dfsle.UUID myTemplateId = dfsle.UUID.parse('3d9fac4b-efb0-4219-ac98-6cd70d70f8ed');
+	    dfsle.UUID myTemplateId = dfsle.UUID.parse('3d9fac4b-xxxx-xxxx-xxxx-6cd70d70f8ed');
 	    dfsle.Document myDocument = dfsle.Document.fromTemplate(
     	    myTemplateId, // templateId in dfsle.UUID format
     	    'myTemplate'); // name of the template
@@ -64,7 +64,7 @@ public with sharing class BulkSendUpdate{
 	    // Create the draft bulk envelope. This will have exactly one placeholder bulk recipient
 	    dfsle.Envelope myEnvelope = dfsle.BulkSendService.getDraftEnvelope(
 	    new List<dfsle.Document> { myDocument },	null); // Optional Salesforce source entity
-        
+
 	    // Send envelope with a placeholder bulk recipient
 	    dfsle.BulkList.Result myResult = dfsle.BulkSendService.sendEnvelope(myListId, myEnvelope);
 
