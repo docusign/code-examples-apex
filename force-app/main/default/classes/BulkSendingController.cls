@@ -23,15 +23,15 @@ public with sharing class BulkSendUpdate{
         ]) {
             myBulkCopies.add(dfsle.Envelope.newBulkCopy(
 				dfsle.Recipient.newBulkRecipient(
-					m.Member.Name, // Name
-					m.Member.Email, // Email
+					m.Member.Name,
+					m.Member.Email,
 					new dfsle.Entity(m.Member.Id) // Source Salesforce object
         		)
         	.withRole('SignerOne')
 		    ));
             }
             
-        // Create the bulk list. This list persists after sending and may be reused for multiple envelopes
+        // Create the bulk list. This list persists after sending and may be reused for multiple batches of envelopes
         dfsle.BulkList myList = dfsle.BulkSendService.createLists(new List<dfsle.BulkList> {
             dfsle.BulkList.newList(
                 'My bulk list', // List name
