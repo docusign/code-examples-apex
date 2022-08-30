@@ -1,4 +1,4 @@
-public with sharing class BulkSendUpdate{
+public with sharing class BulkSendingClass{
 
 /**
  *  buildList Method
