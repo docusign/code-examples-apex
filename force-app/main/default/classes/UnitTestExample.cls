@@ -36,5 +36,6 @@ public with sharing class UnitTestExample {
                     'Signer 1',
                     new dfsle.Entity(myContact.Id))
             });
-    }
+      } 
+   }
 }
