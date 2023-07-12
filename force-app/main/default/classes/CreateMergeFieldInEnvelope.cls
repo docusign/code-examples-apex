@@ -1,16 +1,15 @@
 public with sharing class CreateMergeFieldInEnvelope {
     public CreateMergeFieldInEnvelope() {
+        
         Id mySourceId = '00XXXXXXXXXXXXXXAM'; // The ID of the initiating Salesforce Opportunity
+        Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = '00XXXXXXXXXXXXXXAB'];
+        Id myDocumentId = '00XXXXXXXXXXXXXXA4'; // The ID of a document stored in a Salesforce library
+        Id myFileId = [SELECT id from ContentVersion where ContentDocumentId = :myDocumentId LIMIT 1].id;
 
         // Create an empty envelope
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
         new dfsle.Entity(mySourceId));
         // The initiating Salesforce entity
-        
-        Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = '00XXXXXXXXXXXXXXAB'];
-
-        Id myDocumentId = '00XXXXXXXXXXXXXXA4'; // The ID of a document stored in a Salesforce library
-        Id myFileId = [SELECT id from ContentVersion where ContentDocumentId = :myDocumentId LIMIT 1].id;
         
         // Add document to the envelope
         myEnvelope = myEnvelope.withDocuments(dfsle.DocumentService.getDocuments(ContentVersion.getSObjectType(), new Set<Id> { myFileId }));
