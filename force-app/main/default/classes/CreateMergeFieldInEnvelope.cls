@@ -25,20 +25,21 @@ public with sharing class CreateMergeFieldInEnvelope {
 
 		//Create a text tab that will be mapped to the merge field        
 		dfsle.Tab myTextTab = new dfsle.TextTab()
-    		.withMergeField(myMergeField) //Associate this tab with the mergeField
+    	    .withMergeField(myMergeField) //Associate this tab with the mergeField
     		.withReadOnly(false) //true = read only or locked
     		.withAnchor(new dfsle.Tab.Anchor('/MergeFieldHere/', true, true, null, true, true, 'pixels', 80, -5))    
     		.withDataLabel('Contact Name');
 
 
         // Create a new recipient
-        Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = '00XXXXXXXXXXXXXXAB'];
+        Id myContactId = '00XXXXXXXXXXXXXXA4';
+        Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = :myContactId];
 
         dfsle.Recipient myRecipient = dfsle.Recipient.fromSource(
             myContact.Name, // Signer name
             myContact.Email, // Signer email
             null, // Signer phone number
-            'Signer 1', // Signer role
+            null, // Template role n/a
             null) // No Salesforce association
             .withTabs(new List<dfsle.Tab> { // Associate the tabs with this recipient
                 myTextTab
