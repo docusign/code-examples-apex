@@ -2,9 +2,6 @@ public with sharing class CreateMergeFieldInEnvelope {
     public CreateMergeFieldInEnvelope() {
         
         Id mySourceId = '00XXXXXXXXXXXXXXAM'; // The ID of the initiating Salesforce Opportunity
-        Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = '00XXXXXXXXXXXXXXAB'];
-        Id myDocumentId = '00XXXXXXXXXXXXXXA4'; // The ID of a document stored in a Salesforce library
-        Id myFileId = [SELECT id from ContentVersion where ContentDocumentId = :myDocumentId LIMIT 1].id;
 
         // Create an empty envelope
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
@@ -12,21 +9,9 @@ public with sharing class CreateMergeFieldInEnvelope {
         // The initiating Salesforce entity
         
         // Add document to the envelope
+        Id myDocumentId = '00XXXXXXXXXXXXXXA4'; // The ID of a document stored in a Salesforce library
+        Id myFileId = [SELECT id from ContentVersion where ContentDocumentId = :myDocumentId LIMIT 1].id;
         myEnvelope = myEnvelope.withDocuments(dfsle.DocumentService.getDocuments(ContentVersion.getSObjectType(), new Set<Id> { myFileId }));
-
-        dfsle.Tab mySignHereTab = new dfsle.SignHereTab()
-            .withScale(1.5) // 1.5 scale
-            .withRequired(true) // Signing mandatory
-            .withAnchor(new dfsle.Tab.Anchor(
-                '/SignHere/', // Anchor string
-                false, // Do not allow white space in anchor string
-                false, // Anchor string is not case sensitive
-                'right', // Horizontal alignment in relation to the anchor text
-                true, // Ignore if the anchor text is not present in the document
-                true, // Must match the value of the anchor string in its entirety
-                'pixels', // Unit of the x and y offset properties
-                20, // X offset
-                0)); // Y offset
         
         //Define a merge field
         //This field will be associated with the initiating source object represented by mySourceId
@@ -47,6 +32,8 @@ public with sharing class CreateMergeFieldInEnvelope {
 
 
         // Create a new recipient
+        Contact myContact = [SELECT Id, Name, Email FROM Contact WHERE Id = '00XXXXXXXXXXXXXXAB'];
+
         dfsle.Recipient myRecipient = dfsle.Recipient.fromSource(
             myContact.Name, // Signer name
             myContact.Email, // Signer email
@@ -54,8 +41,7 @@ public with sharing class CreateMergeFieldInEnvelope {
             'Signer 1', // Signer role
             null) // No Salesforce association
             .withTabs(new List<dfsle.Tab> { // Associate the tabs with this recipient
-                myTextTab,
-                mySignHereTab
+                myTextTab
             });
 
         // Add recipient to the envelope
