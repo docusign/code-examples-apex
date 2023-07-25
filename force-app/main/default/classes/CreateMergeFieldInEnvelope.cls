@@ -29,7 +29,7 @@ public with sharing class CreateMergeFieldInEnvelope {
 		dfsle.Tab myTextTab = new dfsle.TextTab()
     	    .withMergeField(myMergeField) //Associate this tab with the mergeField
     		.withReadOnly(false) //true = read only or locked
-    		.withAnchor(new dfsle.Tab.Anchor('/MergeFieldHere/', true, true, null, true, true, 'pixels', 80, -5))    
+    		.withPosition(new dfsle.Tab.Position(1, 1, 200, 300, null, null))    
     		.withDataLabel('Contact Name');
 
 
