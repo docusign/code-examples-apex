@@ -1,5 +1,7 @@
 public with sharing class CreateMergeFieldInEnvelope {
-    public sendEnvelope() {
+    
+    @AuraEnabled
+    public static void sendEnvelope() {
         
         Id mySourceId = '00XXXXXXXXXXXXXXAM'; // The ID of the initiating Salesforce Opportunity
 
