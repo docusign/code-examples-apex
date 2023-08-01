@@ -2,7 +2,7 @@
 public with sharing class UnitTestExample {
     
     @IsTest
-    public testSendEnvelope() {
+    public static void testSendEnvelope() {
         // Mock the DocuSign eSignature API
         dfsle.TestUtils.setMock(new dfsle.ESignatureAPIMock());
 		
@@ -36,5 +36,6 @@ public with sharing class UnitTestExample {
                     'Signer 1',
                     new dfsle.Entity(myContact.Id))
             });
-    }
+      } 
+   }
 }
