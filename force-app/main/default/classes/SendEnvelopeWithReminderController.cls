@@ -3,6 +3,7 @@ public class SendEnvelopeWithReminderController {
         Id mySourceId = '0XXXXXXXXXXXXXXXXE'; // The ID of the initiating Salesforce object.
 
         // Set up notification
+        //ds-snippet-start:Apex6Step2
         dfsle.Notifications notifySigner = new dfsle.Notifications(
             true, // Indicates that the recipient should be reminded to sign
             2, // Number of days to wait before sending a reminder
@@ -12,7 +13,9 @@ public class SendEnvelopeWithReminderController {
             10, // Number of days before expiration to remind the recipient
             false // Placeholder for deprecated field
         );
+        //ds-snippet-end:Apex6Step2
         
+        //ds-snippet-start:Apex6Step3
 		// Create an empty envelope.
 		dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
     	new dfsle.Entity(mySourceId));
@@ -45,10 +48,13 @@ public class SendEnvelopeWithReminderController {
 		myEnvelope = myEnvelope.withDocuments(new List<dfsle.Document> { myDocument });
         // Add notification to the envelope
         myEnvelope = myEnvelope.withNotifications(notifySigner);
+        //ds-snippet-end:Apex6Step3
         
         // Send the envelope
+        //ds-snippet-start:Apex6Step4
 		myEnvelope = dfsle.EnvelopeService.sendEnvelope(
     		myEnvelope, // The envelope to send
     		true); // Indicates that the envelope should be sent now
+        //ds-snippet-end:Apex6Step4
     }
 }
