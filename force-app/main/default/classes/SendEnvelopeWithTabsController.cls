@@ -3,20 +3,25 @@ public with sharing class SendEnvelopeWithTabsController {
 @AuraEnabled
 
     public static void sendEnvelopeWithTabs() {
+        //ds-snippet-start:Apex5Step2
         Id mySourceId = '00XXXXXXXXXXXXXXAM'; // The ID of the initiating Salesforce object
 
         // Create an empty envelope
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
         new dfsle.Entity(mySourceId));
         // The initiating Salesforce entity
+        //ds-snippet-end
 
+        //ds-snippet-start:Apex5Step3
         Id myDocumentId = '06XXXXXXXXXXXXXXAQ'; // The ID of a document stored in a Salesforce library
         Id myFileId = [SELECT id from ContentVersion where ContentDocumentId = :myDocumentId LIMIT 1].id;
         
         // Add document to the envelope
         myEnvelope = myEnvelope.withDocuments(dfsle.DocumentService.getDocuments(ContentVersion.getSObjectType(), new Set<Id> { myFileId }));
+        //ds-snippet-end
 
         // Create an Initial Here tab
+        //ds-snippet-start:Apex5Step4
         dfsle.Tab myInitialHereTab = new dfsle.InitialHereTab()
             .withRequired(true) // Signing optional
             .withPosition(new dfsle.Tab.Position(
@@ -71,9 +76,11 @@ public with sharing class SendEnvelopeWithTabsController {
                 470, // Y position
                 null, // Default width
                 null)); // Default height
+        //ds-snippet-end
 
 
         // Create a new recipient
+        //ds-snippet-start:Apex5Step5
         dfsle.Recipient myRecipient = dfsle.Recipient.fromSource(
             'Lily TheGSD', // Signer name
             'lilythegsd@gmail.com', // Signer email
@@ -89,10 +96,13 @@ public with sharing class SendEnvelopeWithTabsController {
 
         // Add recipient to the envelope
         myEnvelope = myEnvelope.withRecipients(new List<dfsle.Recipient> { myRecipient });
+        //ds-snippet-end
 
         // Send the envelope
+        //ds-snippet-start:Apex5Step6
         myEnvelope = dfsle.EnvelopeService.sendEnvelope(
             myEnvelope, // The envelope to send
             true); // Send now?
+        //ds-snippet-end
     }
 }
