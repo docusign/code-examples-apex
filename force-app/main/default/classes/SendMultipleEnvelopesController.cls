@@ -1,5 +1,7 @@
 public with sharing class SendMultipleEnvelopesController {
     public static void SendMultipleEnvelopes() {
+
+        //ds-snippet-start:Apex4Step2
         // Get up to 99 contacts in the "Prepared" offer stage
         List<Contact> contacts = [SELECT Id, Name FROM Contact WHERE OfferStage__c = 'Prepared' LIMIT 99];
 
@@ -20,7 +22,9 @@ public with sharing class SendMultipleEnvelopesController {
                     Contact.getSObjectType(), 
                     new Set<Id> { c.Id })));
         }
+        //ds-snippet-end:Apex4Step2
 
+        //ds-snippet-start:Apex4Step3
         // Send the envelopes and determine which envelopes were sent successfully
         // Filter out unsuccessfully sent envelopes
         List<Contact> contactsToUpdate = new List<Contact>();
@@ -40,9 +44,13 @@ public with sharing class SendMultipleEnvelopesController {
 
         // Update the Contact offer stage to "Out for Signature"
         update contactsToUpdate;    
-        
-        List<dfsle.Envelope> savedEnvelopes = dfsle.EnvelopeService.saveSentEnvelopes(sentEnvelopes);
+        //ds-snippet-end:Apex4Step3
 
+        //ds-snippet-start:Apex4Step4
+        List<dfsle.Envelope> savedEnvelopes = dfsle.EnvelopeService.saveSentEnvelopes(sentEnvelopes);
+        //ds-snippet-end:Apex4Step4
+
+    //ds-snippet-start:Apex4Step5
     // Build a list of Contact IDs to query
     Set<Id> contactIds = new Set<Id>();
     for (dfsle.Envelope envelope : savedEnvelopes) {
@@ -55,7 +63,8 @@ public with sharing class SendMultipleEnvelopesController {
         contactIds, // Envelope source object IDs
         99); // Maximum number of records to return
 
-    // Display or take action on the returned statuses        
+    // Display or take action on the returned statuses  
+    //ds-snippet-end:Apex4Step5      
     }
 
 }
