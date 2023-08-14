@@ -1,7 +1,9 @@
+//ds-snippet-start:Apex10Step1
 public with sharing class CreateMergeFieldInEnvelope {
     
     @AuraEnabled
     public static void sendEnvelope() {
+//ds-snippet-end:Apex10Step1
 
         //ds-snippet-start:Apex10Step2
         Id mySourceId = '00XXXXXXXXXXXXXXAM'; // The ID of the initiating Salesforce Opportunity
@@ -63,5 +65,7 @@ public with sharing class CreateMergeFieldInEnvelope {
             true); // Send now?
         //ds-snippet-end:Apex10Step5
 
+//ds-snippet-start:Apex10Step1
     }
 }
+//ds-snippet-end:Apex10Step1
