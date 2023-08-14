@@ -1,8 +1,10 @@
+//ds-snippet-start:Apex5Step1
 public with sharing class SendEnvelopeWithTabsController {
 
 @AuraEnabled
 
     public static void sendEnvelopeWithTabs() {
+    //ds-snippet-end    
         //ds-snippet-start:Apex5Step2
         Id mySourceId = '00XXXXXXXXXXXXXXAM'; // The ID of the initiating Salesforce object
 
@@ -104,5 +106,7 @@ public with sharing class SendEnvelopeWithTabsController {
             myEnvelope, // The envelope to send
             true); // Send now?
         //ds-snippet-end
+    //ds-snippet-start:Apex5Step1    
     }
 }
+//ds-snippet-end
