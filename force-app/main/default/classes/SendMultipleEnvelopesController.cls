@@ -1,5 +1,7 @@
+//ds-snippet-start:Apex4Step1
 public with sharing class SendMultipleEnvelopesController {
     public static void SendMultipleEnvelopes() {
+//ds-snippet-end:Apex4Step1
 
         //ds-snippet-start:Apex4Step2
         // Get up to 99 contacts in the "Prepared" offer stage
@@ -65,6 +67,7 @@ public with sharing class SendMultipleEnvelopesController {
 
     // Display or take action on the returned statuses  
     //ds-snippet-end:Apex4Step5      
+//ds-snippet-start:Apex4Step1
     }
-
 }
+//ds-snippet-end:Apex4Step1
