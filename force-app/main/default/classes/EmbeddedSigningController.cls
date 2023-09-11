@@ -1,4 +1,6 @@
+//ds-snippet-start:Apex2Step1
 public class EmbeddedSigningController {
+//ds-snippet-end:Apex2Step1
     /**
  *  sendEnvelope method (String)
  *    Get Salesforce user ID
@@ -9,6 +11,7 @@ public class EmbeddedSigningController {
  *    Return the envelope ID to the controller as a string
  */
 
+//ds-snippet-start:Apex2Step2
 @AuraEnabled
 public static String sendEnvelope(String template, String description, Id recordId) {
     Id mySourceId = recordId; // The ID of the initiating Salesforce object
@@ -33,7 +36,7 @@ public static String sendEnvelope(String template, String description, Id record
     // Return string value of DocuSign envelope ID
     return String.valueOf(dsEnvelope.docuSignId);
 }
-
+//ds-snippet-end:Apex2Step2
 
 /**
  *  getEmbeddedSigningUrl method (String)
@@ -42,7 +45,8 @@ public static String sendEnvelope(String template, String description, Id record
  *    Generate an embedded signing URL
  *    Return the embedded signing URL as a string
  */
-  
+ 
+//ds-snippet-start:Apex2Step3 
   @AuraEnabled
   public static String getEmbeddedSigningUrl(String envId, String url) {
     Url mySigningUrl = dfsle.SigningService.getEmbeddedSigningUrl(
@@ -52,4 +56,7 @@ public static String sendEnvelope(String template, String description, Id record
     // Return string value of Url to controller
     return mySigningUrl.toExternalForm();
   }
+//ds-snippet-end:Apex2Step3 
+//ds-snippet-start:Apex2Step1
 }
+//ds-snippet-end:Apex2Step1
