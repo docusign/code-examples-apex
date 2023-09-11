@@ -1,12 +1,16 @@
+//ds-snippet-start:Apex7Step1
 public class InPersonSigningController {
      public static Id sendWithInPerson(){
+//ds-snippet-end:Apex7Step1
         
+        //ds-snippet-start:Apex7Step2
         //Get the Salesforce account ID
         Opportunity myOpportunity = [SELECT Id FROM Opportunity WHERE Name = 'My Opportunity' LIMIT 1];
         // Create an empty envelope with Opportunity Id as the source Id
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(new dfsle.Entity(myOpportunity.Id));
-        //Find your contact to add
+        //ds-snippet-end:Apex7Step2
        
+        //ds-snippet-start:Apex7Step3
         dfsle.Recipient InPerson = new dfsle.Recipient(
             null, //Source Id
             'inPersonSigner',//Type of recipient
@@ -31,6 +35,9 @@ public class InPersonSigningController {
             false); //required
             // add Recipient to the Envelope
             myEnvelope = myEnvelope.withRecipients(new List<dfsle.Recipient> { InPerson });
+        //ds-snippet-end:Apex7Step3
+
+            //ds-snippet-start:Apex7Step4
             // myTemplateId contains the DocuSign Id of the DocuSign Template
             dfsle.UUID myTemplateId = dfsle.UUID.parse('801c741b-xxxx-xxxx-xxxx-23a050e0dd51'); 
             // Create a new document for the Envelope
@@ -39,7 +46,9 @@ public class InPersonSigningController {
                 'myTemplate'); // Name of the template
         
             myEnvelope = myEnvelope.withDocuments(new List<dfsle.Document> { myDocument });
+            //ds-snippet-end:Apex7Step4
         
+            //ds-snippet-start:Apex7Step5
             // Send the envelope
             myEnvelope = dfsle.EnvelopeService.sendEnvelope(
                 myEnvelope, // The envelope to send
@@ -47,6 +56,9 @@ public class InPersonSigningController {
         
             System.debug(myEnvelope.Id);
             return myEnvelope.Id;
-    }
+            //ds-snippet-end:Apex7Step5
 
+//ds-snippet-start:Apex7Step1
+    }
 }
+//ds-snippet-end:Apex7Step1
