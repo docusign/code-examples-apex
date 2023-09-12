@@ -1,4 +1,3 @@
-//ds-snippet-start:Apex2Step6
 import { LightningElement, api } from 'lwc';
 import sendEnvelope from '@salesforce/apex/EmbeddedSigningController.sendEnvelope';
 import getEmbeddedSigningUrl from '@salesforce/apex/EmbeddedSigningController.getEmbeddedSigningUrl';
@@ -25,4 +24,3 @@ export default class EmbeddedSigningComponent extends LightningElement {
             });
     }
 }
-//ds-snippet-end:Apex2Step6
