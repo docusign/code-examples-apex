@@ -1,16 +1,24 @@
+//ds-snippet-start:Apex9Step1
 public class SendToNewContact {
+//ds-snippet-end:Apex9Step1
+
+    //ds-snippet-start:Apex9Step4
     @InvocableMethod
     public static List<String> sendEnvelope(List<Contact> record) {
       Contact mySource = record.get(0);
       sendEnvelopeInFuture(mySource.Id);
       return Null;
     }
+    //ds-snippet-end:Apex9Step4
   
+    //ds-snippet-start:Apex9Step3
     @future(callout = true)
     public static void sendEnvelopeInFuture(Id mySourceId) {
       createAndSendEnvelope(mySourceId);
     }
+    //ds-snippet-end:Apex9Step3
   
+    //ds-snippet-start:Apex9Step2
     public static Id createAndSendEnvelope(Id mySourceId) {
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
           new dfsle.Entity(mySourceId)
@@ -38,4 +46,8 @@ public class SendToNewContact {
         );
         return myEnvelope.Id;
       }
+      //ds-snippet-end:Apex9Step2
+
+  //ds-snippet-start:Apex9Step1
   }
+  //ds-snippet-end:Apex9Step1
