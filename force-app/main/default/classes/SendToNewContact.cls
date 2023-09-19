@@ -48,6 +48,6 @@ public class SendToNewContact {
       }
       //ds-snippet-end:Apex9Step2
 
-  //ds-snippet-start:Apex9Step1
-  }
-  //ds-snippet-end:Apex9Step1
+//ds-snippet-start:Apex9Step1
+}
+//ds-snippet-end:Apex9Step1
