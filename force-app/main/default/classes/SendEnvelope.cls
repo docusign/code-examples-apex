@@ -1,6 +1,9 @@
+//ds-snippet-start:Apex1Step1
 public class SendEnvelope {
-
     public static void sendEnvelopeMethod(){
+//ds-snippet-end:Apex1Step1
+
+        //ds-snippet-start:Apex1Step2
         Id mySourceId; // The ID of the initiating Salesforce object
         String templateId; // The ID of the DocuSign template
 
@@ -8,8 +11,9 @@ public class SendEnvelope {
         dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
         new dfsle.Entity(mySourceId));
         // The initiating Salesforce entity
+        //ds-snippet-end:Apex1Step2
 
-        // Use myEnvelope for later 
+        //ds-snippet-start:Apex1Step3
         // We will use a Salesforce contact record as a Recipient here
         Contact myContact = [SELECT Id, Name, Email FROM Contact LIMIT 1];
 
@@ -23,7 +27,9 @@ public class SendEnvelope {
 
         // Add a recipient to the envelope
         myEnvelope = myEnvelope.withRecipients(new List<dfsle.Recipient> { myRecipient });
+        //ds-snippet-end:Apex1Step3
 
+        //ds-snippet-start:Apex1Step4
         // myTemplateId contains the DocuSign Id of the DocuSign Template
         dfsle.UUID myTemplateId = dfsle.UUID.parse(templateId);
 
@@ -34,10 +40,15 @@ public class SendEnvelope {
 
         //add document to the envelope
         myEnvelope = myEnvelope.withDocuments(new List<dfsle.Document> { myDocument });
+        //ds-snippet-end:Apex1Step4
 
+        //ds-snippet-start:Apex1Step5
         // Send the envelope
         myEnvelope = dfsle.EnvelopeService.sendEnvelope(
             myEnvelope, // The envelope to send
             true); // True to send the envelope now
+        //ds-snippet-end:Apex1Step5
+    //ds-snippet-start:Apex1Step1
     }
 }
+//ds-snippet-end:Apex1Step1
