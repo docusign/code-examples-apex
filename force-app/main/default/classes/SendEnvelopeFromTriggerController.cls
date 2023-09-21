@@ -1,5 +1,7 @@
+//ds-snippet-start:Apex11Step1
 public with sharing class SendEnvelopeFromTriggerController {
     public class EnvelopeSendResponse {
+
         public String message {get; private set;}
         public Boolean status {get; private set;}
             
@@ -8,7 +10,9 @@ public with sharing class SendEnvelopeFromTriggerController {
             this.status = status;
         }
     }
+//ds-snippet-end:Apex11Step1
 
+    //ds-snippet-start:Apex11Step2
     public static EnvelopeSendResponse sendEnvelope(final Id mySourceId) {
         EnvelopeSendResponse response;
         try {
@@ -49,6 +53,9 @@ public with sharing class SendEnvelopeFromTriggerController {
         catch(Exception ex) {
             response = new EnvelopeSendResponse(ex.getMessage(), false);
         }
-        return response;     
+        return response;    
     }
-}
+    //ds-snippet-end:Apex11Step2
+//ds-snippet-start:Apex11Step1
+} 
+//ds-snippet-end:Apex11Step1
