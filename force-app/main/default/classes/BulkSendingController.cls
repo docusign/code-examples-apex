@@ -1,4 +1,6 @@
+//ds-snippet-start:Apex3Step1
 public with sharing class BulkSendingClass{
+//ds-snippet-end:Apex3Step1
 
 /**
  *  buildList Method
@@ -7,6 +9,7 @@ public with sharing class BulkSendingClass{
  *    Return an ID of the list
  */
 
+    //ds-snippet-start:Apex3Step2
     @AuraEnabled
     public static Id buildList(){
 
@@ -45,9 +48,10 @@ public with sharing class BulkSendingClass{
         return myListId;
 
     }
+    //ds-snippet-end:Apex3Step2
 
 
-
+    //ds-snippet-start:Apex3Step3
     @future(callout=true)    
     /**
     *  bulkSendEnvelopes method
@@ -69,4 +73,8 @@ public with sharing class BulkSendingClass{
 	    dfsle.BulkList.Result myResult = dfsle.BulkSendService.sendEnvelope(myListId, myEnvelope);
 
     }
+    //ds-snippet-end:Apex3Step3
+    
+//ds-snippet-start:Apex3Step1
 }
+//ds-snippet-end:Apex3Step1
