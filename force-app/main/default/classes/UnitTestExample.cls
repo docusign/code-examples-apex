@@ -1,8 +1,12 @@
+//ds-snippet-start:Apex12Step1
 @IsTest
 public with sharing class UnitTestExample {
     
     @IsTest
     public static void testSendEnvelope() {
+//ds-snippet-end:Apex12Step1
+
+        //ds-snippet-start:Apex12Step2
         // Mock the DocuSign eSignature API
         dfsle.TestUtils.setMock(new dfsle.ESignatureAPIMock());
 		
@@ -36,6 +40,20 @@ public with sharing class UnitTestExample {
                     'Signer 1',
                     new dfsle.Entity(myContact.Id))
             });
-      } 
+      }
+      //ds-snippet-end:Apex12Step2 
+
+      //ds-snippet-start:Apex12Step3
+      // Perform the test
+      Test.startTest();
+      dfsle.Envelope myResult = dfsle.EnvelopeService.sendEnvelope(myEnvelope, true);
+      Test.stopTest();
+        
+      // Verify the results
+      System.assertNotEquals(null, myResult);
+      //ds-snippet-end:Apex12Step3
+
+//ds-snippet-start:Apex12Step1
    }
 }
+//ds-snippet-end:Apex12Step1
