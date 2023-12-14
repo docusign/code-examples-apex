@@ -15,7 +15,7 @@ public class SendEnvelopeWithReminderController {
         );
         //ds-snippet-end:Apex6Step2
         
-        //ds-snippet-start:Apex6Step3
+        	//ds-snippet-start:Apex6Step3
 		// Create an empty envelope.
 		dfsle.Envelope myEnvelope = dfsle.EnvelopeService.getEmptyEnvelope(
     	new dfsle.Entity(mySourceId));
@@ -48,13 +48,13 @@ public class SendEnvelopeWithReminderController {
 		myEnvelope = myEnvelope.withDocuments(new List<dfsle.Document> { myDocument });
         // Add notification to the envelope
         myEnvelope = myEnvelope.withNotifications(notifySigner);
-        //ds-snippet-end:Apex6Step3
+        	//ds-snippet-end:Apex6Step3
         
         // Send the envelope
-        //ds-snippet-start:Apex6Step4
+        	//ds-snippet-start:Apex6Step4
 		myEnvelope = dfsle.EnvelopeService.sendEnvelope(
     		myEnvelope, // The envelope to send
     		true); // Indicates that the envelope should be sent now
-        //ds-snippet-end:Apex6Step4
+        	//ds-snippet-end:Apex6Step4
     }
 }
