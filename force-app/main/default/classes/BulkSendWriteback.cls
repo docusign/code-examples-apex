@@ -1,4 +1,5 @@
 public class BulkSendWriteback {
+   //ds-snippet-start:Apex13Step4
    @AuraEnabled
    public static Id buildList(){
        
@@ -35,13 +36,14 @@ public class BulkSendWriteback {
        System.debug(LoggingLevel.INFO, myListId);
        return myListId;
        
-   }	
+   }
+   //ds-snippet-end:Apex13Step4	
    
+   //ds-snippet-start:Apex13Step5
    @future(callout=true)    
    /**
 *  bulkSendEnvelopes method
-*    Use myListId from buildList method
-*    Assign myStatusId to the result of the BulkSendService call
+*  Use myListId from buildList method
 */
    public static void bulkSendEnvelopes(Id myListId){
        
@@ -58,5 +60,6 @@ public class BulkSendWriteback {
        dfsle.BulkList.Result myResult = dfsle.BulkSendService.sendEnvelope(myListId, myEnvelope);
        System.debug(myResult);
    }
+   //ds-snippet-end:Apex13Step5
    
 }
